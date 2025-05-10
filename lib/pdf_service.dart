@@ -20,7 +20,6 @@ class PdfService {
         final imageBytes = await image.readAsBytes();
         final pdfImage = pw.MemoryImage(imageBytes);
 
-        // A4サイズのページを作成し、画像を配置
         pdf.addPage(
           pw.Page(
             pageFormat: PdfPageFormat.a4,
@@ -52,7 +51,7 @@ class PdfService {
         text: 'ドキュメントスキャナーで作成したPDFです',
       );
     } catch (e) {
-      rethrow; // エラーを上位に伝播させる
+      rethrow;
     }
   }
 }

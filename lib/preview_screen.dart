@@ -178,7 +178,6 @@ class _PreviewScreenState extends State<PreviewScreen> {
             ],
           ),
 
-          // ローディングインジケーター
           if (_isLoading)
             Container(
               color: Colors.black45,

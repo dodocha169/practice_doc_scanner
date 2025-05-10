@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
     await Permission.storage.request();
   }
 
-  // ① カメラ起動処理
+  //カメラ起動
   Future<void> _startScanning() async {
     List<String> scannedPics = [];
     setState(() {
@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // やり直す: データ破棄 → ①へ
+  // やり直す
   void _retake() {
     if (_scannedPics.isNotEmpty) {
       setState(() {
@@ -104,12 +104,12 @@ class _HomeScreenState extends State<HomeScreen> {
     _startScanning();
   }
 
-  // 続けて撮影: データ保持 → ①へ
+  // 続けて撮影
   void _continueScanning() {
     _startScanning();
   }
 
-  // PDFエクスポート: PDF出力 → 保存 or 共有
+  // PDFエクスポート
   Future<void> _exportPdf() async {
     if (_scannedPics.isEmpty) {
       _showErrorSnackBar('スキャンされた画像がありません');
@@ -143,23 +143,17 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // アプリロゴやアイコン
                 Icon(
                   Icons.document_scanner,
                   size: 80,
                   color: Theme.of(context).colorScheme.primary,
                 ),
                 const SizedBox(height: 24),
-
-                // タイトル
                 Text(
                   'ドキュメントスキャナー',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
-
                 const SizedBox(height: 16),
-
-                // 説明テキスト
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
                   child: Text(
@@ -171,12 +165,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 const SizedBox(height: 48),
 
-                // スキャン開始ボタン
                 ScanButton(label: 'スキャン開始', onPressed: _startScanning),
 
                 const SizedBox(height: 24),
 
-                // 撮影済み画像がある場合
                 if (_scannedPics.isNotEmpty) ...[
                   Text(
                     '${_scannedPics.length}枚のドキュメントをスキャンしました',
@@ -195,7 +187,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // ローディングインジケーター
           if (_isLoading)
             Container(
               color: Colors.black45,
